@@ -1,0 +1,17 @@
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\bin\Debug\net6.0-windows\WorkoutPlanner.exe
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\bin\Debug\net6.0-windows\WorkoutPlanner.deps.json
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\bin\Debug\net6.0-windows\WorkoutPlanner.runtimeconfig.json
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\bin\Debug\net6.0-windows\WorkoutPlanner.dll
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\bin\Debug\net6.0-windows\WorkoutPlanner.pdb
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.MainMenu.resources
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.csproj.GenerateResource.cache
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.AssemblyInfoInputs.cache
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.AssemblyInfo.cs
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.csproj.CoreCompileInputs.cache
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.dll
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\refint\WorkoutPlanner.dll
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.pdb
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.genruntimeconfig.cache
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\ref\WorkoutPlanner.dll
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.ViewExercises.resources

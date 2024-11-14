@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutPlanner", "WorkoutPlanner\WorkoutPlanner.csproj", "{FD7D8A4D-8328-41CF-BA99-C35928D90C67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutPlanner", "WorkoutPlanner\WorkoutPlanner.csproj", "{395EA472-858E-4F07-A4B4-617A08DC0B24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FD7D8A4D-8328-41CF-BA99-C35928D90C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD7D8A4D-8328-41CF-BA99-C35928D90C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD7D8A4D-8328-41CF-BA99-C35928D90C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD7D8A4D-8328-41CF-BA99-C35928D90C67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{395EA472-858E-4F07-A4B4-617A08DC0B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{395EA472-858E-4F07-A4B4-617A08DC0B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{395EA472-858E-4F07-A4B4-617A08DC0B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{395EA472-858E-4F07-A4B4-617A08DC0B24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {384CEBE1-6299-49E7-8447-B1519106DAFE}
+		SolutionGuid = {FA001987-9AAE-4887-9557-EAD07EE40675}
 	EndGlobalSection
 EndGlobal
