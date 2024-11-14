@@ -30,9 +30,11 @@
         {
             main_menu = new Button();
             exercisesList = new ListBox();
-            textBox1 = new TextBox();
+            exerciseName = new TextBox();
             label1 = new Label();
             addExercise = new Button();
+            removeExercise = new Button();
+            label2 = new Label();
             SuspendLayout();
             // 
             // main_menu
@@ -41,7 +43,7 @@
             main_menu.FlatStyle = FlatStyle.Flat;
             main_menu.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             main_menu.ForeColor = Color.White;
-            main_menu.Location = new Point(834, 513);
+            main_menu.Location = new Point(809, 537);
             main_menu.Name = "main_menu";
             main_menu.Size = new Size(108, 59);
             main_menu.TabIndex = 0;
@@ -56,16 +58,17 @@
             exercisesList.ItemHeight = 15;
             exercisesList.Location = new Point(230, 119);
             exercisesList.Name = "exercisesList";
-            exercisesList.Size = new Size(525, 274);
+            exercisesList.Size = new Size(500, 274);
             exercisesList.TabIndex = 1;
+            exercisesList.SelectedIndexChanged += exercisesList_SelectedIndexChanged;
             // 
-            // textBox1
+            // exerciseName
             // 
-            textBox1.Location = new Point(230, 417);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(345, 23);
-            textBox1.TabIndex = 2;
-            textBox1.Text = "Exercise Name:";
+            exerciseName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            exerciseName.Location = new Point(230, 90);
+            exerciseName.Name = "exerciseName";
+            exerciseName.Size = new Size(392, 23);
+            exerciseName.TabIndex = 2;
             // 
             // label1
             // 
@@ -74,7 +77,7 @@
             label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("Arial", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(386, 33);
+            label1.Location = new Point(373, 33);
             label1.Name = "label1";
             label1.Size = new Size(194, 44);
             label1.TabIndex = 3;
@@ -82,30 +85,59 @@
             // 
             // addExercise
             // 
-            addExercise.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            addExercise.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             addExercise.FlatStyle = FlatStyle.Flat;
             addExercise.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             addExercise.ForeColor = Color.White;
-            addExercise.Location = new Point(581, 402);
+            addExercise.Location = new Point(628, 90);
             addExercise.Name = "addExercise";
-            addExercise.Size = new Size(174, 50);
+            addExercise.Size = new Size(102, 23);
             addExercise.TabIndex = 4;
-            addExercise.Text = "Add Exercise";
+            addExercise.Text = "Add";
             addExercise.UseVisualStyleBackColor = true;
+            addExercise.Click += addExercise_Click;
+            // 
+            // removeExercise
+            // 
+            removeExercise.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            removeExercise.FlatStyle = FlatStyle.Flat;
+            removeExercise.Font = new Font("Arial Rounded MT Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            removeExercise.ForeColor = Color.White;
+            removeExercise.Location = new Point(628, 399);
+            removeExercise.Name = "removeExercise";
+            removeExercise.Size = new Size(102, 23);
+            removeExercise.TabIndex = 5;
+            removeExercise.Text = "Remove";
+            removeExercise.UseVisualStyleBackColor = true;
+            removeExercise.Click += removeExercise_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(92, 91);
+            label2.Name = "label2";
+            label2.Size = new Size(132, 18);
+            label2.TabIndex = 6;
+            label2.Text = "Exercise Name:";
             // 
             // ViewExercises
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(954, 584);
+            ClientSize = new Size(929, 608);
+            Controls.Add(label2);
+            Controls.Add(removeExercise);
             Controls.Add(addExercise);
             Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(exerciseName);
             Controls.Add(exercisesList);
             Controls.Add(main_menu);
             Name = "ViewExercises";
             Text = "ViewExercises";
+            Load += ViewExercises_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -114,8 +146,10 @@
 
         private Button main_menu;
         private ListBox exercisesList;
-        private TextBox textBox1;
+        private TextBox exerciseName;
         private Label label1;
         private Button addExercise;
+        private Button removeExercise;
+        private Label label2;
     }
 }

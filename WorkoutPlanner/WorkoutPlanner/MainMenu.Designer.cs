@@ -30,6 +30,7 @@
         {
             label1 = new Label();
             button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -59,12 +60,27 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // button2
+            // 
+            button2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(120, 300);
+            button2.Name = "button2";
+            button2.Size = new Size(868, 64);
+            button2.TabIndex = 9;
+            button2.Text = "View Workouts";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1103, 627);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label1);
             Name = "MainMenu";
@@ -77,5 +93,6 @@
 
         private Label label1;
         private Button button1;
+        private Button button2;
     }
 }
