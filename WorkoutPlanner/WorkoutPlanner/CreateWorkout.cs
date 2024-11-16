@@ -13,26 +13,33 @@ namespace WorkoutPlanner
     public partial class CreateWorkout : Form
     {
 
-        private Workout currentWorkout;
-        private List<Exercise> availableExercises;
+        private string workoutName;
+        private List<string> exercises = new List<string>();
 
 
         public CreateWorkout()
         {
             InitializeComponent();
-            //LoadAvailableExercises();
-            currentWorkout = new Workout(string.Empty);
         }
 
 
-        public CreateWorkout(Workout workout) : this()
+        public CreateWorkout(string workoutName) : this()
         {
-            // When a workout is passed in, edit instead of creating a new exercise
-            currentWorkout = workout;
-            //txtWorkoutName.Text = workout.Name;
+            this.workoutName = workoutName;
+            txtWorkoutName.Text = workoutName;
+            LoadExercises();
+        }
 
-
-            InitializeComponent();
+        private void LoadExercises()
+        {
+            exercises.Clear();
+            string workoutFile = Path.Combine("workouts", workoutName + ".txt");
+            if (File.Exists(workoutFile))
+            {
+                string[] lines = File.ReadAllLines(workoutFile);
+                exercises.AddRange(lines);
+            }
+            exercisesList.DataSource = exercises;
         }
 
 
@@ -48,24 +55,47 @@ namespace WorkoutPlanner
 
         }
 
+        private void removeExercise_Click(object sender, EventArgs e)
+        {
+            string selectedExercise = exercisesList.SelectedItem.ToString();
+            exercises.Remove(selectedExercise);
+            exercisesList.DataSource = null;
+            exercisesList.DataSource = exercises;
+        }
+
         private void cancelButton_Click(object sender, EventArgs e)
         {
             // Cancel Workout Creation
 
-            this.Hide();
-            ViewWorkouts workouts = new ViewWorkouts();
-            workouts.Show();
+            this.Close();
+            ViewWorkouts viewWorkouts = new ViewWorkouts();
+            viewWorkouts.Show();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            // Save Workout Creation
-
-            this.Hide();
-            ViewWorkouts workouts = new ViewWorkouts();
-            workouts.Show();
+            // If changed name, create new file with new name and delete old file
+            if(workoutName != txtWorkoutName.Text)
+            {
+                string workoutToDelete = Path.Combine("workouts", workoutName + ".txt");
+                workoutName = txtWorkoutName.Text;
+                string workoutFile = Path.Combine("workouts", workoutName + ".txt");
+                File.WriteAllLines(workoutFile, exercises);
+                this.DialogResult = DialogResult.OK;
+                File.Delete(workoutToDelete);
+                
+            } else
+            {
+                string workoutFile = Path.Combine("workouts", workoutName + ".txt");
+                File.WriteAllLines(workoutFile, exercises);
+                this.DialogResult = DialogResult.OK;
+            }
+            
+            this.Close();
+            ViewWorkouts viewWorkouts = new ViewWorkouts();
+            viewWorkouts.Show();
         }
 
-
+        
     }
 }

@@ -7,20 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WorkoutPlanner
 {
     public partial class ViewWorkouts : Form
     {
 
-        private List<Workout> workouts = new List<Workout>();
+        private List<string> workouts = new List<string>();
 
         public ViewWorkouts()
         {
             InitializeComponent();
+            LoadWorkouts();
         }
 
-        private void ViewWorkouts_Load(object sender, EventArgs e)
+        /*private void ViewWorkouts_Load(object sender, EventArgs e)
         {
             string workoutFolderLocation = Application.StartupPath.ToString();
             string workoutFolderPath = System.IO.Path.Combine(workoutFolderLocation, "workouts");
@@ -49,7 +51,21 @@ namespace WorkoutPlanner
                 workouts.Add(workout);
                 workoutsList.Items.Add(workoutName);
             }
+        }*/
+
+
+
+        private void LoadWorkouts()
+        {
+            workouts.Clear();
+            string[] workoutFiles = Directory.GetFiles("workouts", "*.txt");
+            foreach (var file in workoutFiles)
+            {
+                workouts.Add(Path.GetFileNameWithoutExtension(file));
+            }
+            workoutsList.DataSource = workouts;
         }
+
 
         private void main_menu_Click(object sender, EventArgs e)
         {
@@ -60,27 +76,43 @@ namespace WorkoutPlanner
 
         private void createWorkout_Click(object sender, EventArgs e)
         {
-            var createWorkoutForm = new CreateWorkout();
+            CreateWorkout createWorkoutForm = new CreateWorkout();
             createWorkoutForm.ShowDialog();
+            LoadWorkouts();
+            this.Close();
         }
 
         private void editWorkout_Click(object sender, EventArgs e)
         {
-            if (workoutsList.SelectedItem == null)
-            {
-                return;
-            }
-
-            string selectedWorkoutName = workoutsList.SelectedItem.ToString();
-            var selectedWorkout = workouts.FirstOrDefault(w => w.Name == selectedWorkoutName);
-
+            string selectedWorkout = workoutsList.SelectedItem.ToString();
             if (selectedWorkout != null)
             {
-                var createWorkoutForm = new CreateWorkout(selectedWorkout);
-                createWorkoutForm.ShowDialog();
+                CreateWorkout editWorkoutForm = new CreateWorkout(selectedWorkout);
+                editWorkoutForm.ShowDialog();
+                LoadWorkouts();
+                this.Close();
             }
-
-
         }
-    }   
+
+        private void deleteWorkout_Click(object sender, EventArgs e)
+        {
+
+            if (workoutsList.SelectedItem != null)
+            {
+                var confirmResult = MessageBox.Show("Are you sure you want to delete this workout?", "Confirm Delete", MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // If 'Yes', do something here.
+
+                    string selectedWorkout = workoutsList.SelectedItem.ToString();
+                    workouts.Remove(selectedWorkout);
+                    workoutsList.DataSource = null;
+                    workoutsList.DataSource = workouts;
+                    string workoutToDelete = Path.Combine("workouts", selectedWorkout + ".txt");
+                    File.Delete(workoutToDelete);
+                }
+
+            }
+        }
+    }
 }

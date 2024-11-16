@@ -33,7 +33,7 @@
             editExercise = new Button();
             addExercise = new Button();
             label2 = new Label();
-            workoutName = new TextBox();
+            txtWorkoutName = new TextBox();
             Workouts = new Label();
             exercisesList = new ListBox();
             saveButton = new Button();
@@ -51,6 +51,7 @@
             removeExercise.TabIndex = 6;
             removeExercise.Text = "Remove Exercise";
             removeExercise.UseVisualStyleBackColor = true;
+            removeExercise.Click += removeExercise_Click;
             // 
             // cancelButton
             // 
@@ -106,13 +107,13 @@
             label2.TabIndex = 11;
             label2.Text = "Workout Name:";
             // 
-            // workoutName
+            // txtWorkoutName
             // 
-            workoutName.Anchor = AnchorStyles.Top;
-            workoutName.Location = new Point(321, 89);
-            workoutName.Name = "workoutName";
-            workoutName.Size = new Size(392, 23);
-            workoutName.TabIndex = 12;
+            txtWorkoutName.Anchor = AnchorStyles.Top;
+            txtWorkoutName.Location = new Point(321, 89);
+            txtWorkoutName.Name = "txtWorkoutName";
+            txtWorkoutName.Size = new Size(392, 23);
+            txtWorkoutName.TabIndex = 12;
             // 
             // Workouts
             // 
@@ -160,7 +161,7 @@
             Controls.Add(saveButton);
             Controls.Add(exercisesList);
             Controls.Add(Workouts);
-            Controls.Add(workoutName);
+            Controls.Add(txtWorkoutName);
             Controls.Add(label2);
             Controls.Add(addExercise);
             Controls.Add(editExercise);
@@ -179,7 +180,7 @@
         private Button editExercise;
         private Button addExercise;
         private Label label2;
-        private TextBox workoutName;
+        private TextBox txtWorkoutName;
         private Label Workouts;
         private ListBox exercisesList;
         private Button saveButton;

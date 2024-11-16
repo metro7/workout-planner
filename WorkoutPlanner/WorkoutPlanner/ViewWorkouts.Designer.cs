@@ -34,6 +34,7 @@
             startSession = new Button();
             workoutsList = new ListBox();
             editWorkout = new Button();
+            deleteWorkout = new Button();
             SuspendLayout();
             // 
             // main_menu
@@ -114,12 +115,27 @@
             editWorkout.UseVisualStyleBackColor = true;
             editWorkout.Click += editWorkout_Click;
             // 
+            // deleteWorkout
+            // 
+            deleteWorkout.Anchor = AnchorStyles.Top;
+            deleteWorkout.FlatStyle = FlatStyle.Flat;
+            deleteWorkout.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            deleteWorkout.ForeColor = Color.White;
+            deleteWorkout.Location = new Point(382, 491);
+            deleteWorkout.Name = "deleteWorkout";
+            deleteWorkout.Size = new Size(187, 59);
+            deleteWorkout.TabIndex = 9;
+            deleteWorkout.Text = "Delete Workout";
+            deleteWorkout.UseVisualStyleBackColor = true;
+            deleteWorkout.Click += deleteWorkout_Click;
+            // 
             // ViewWorkouts
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(953, 631);
+            Controls.Add(deleteWorkout);
             Controls.Add(editWorkout);
             Controls.Add(workoutsList);
             Controls.Add(startSession);
@@ -128,7 +144,6 @@
             Controls.Add(main_menu);
             Name = "ViewWorkouts";
             Text = "ViewWorkouts";
-            Load += ViewWorkouts_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -141,5 +156,6 @@
         private Button startSession;
         private ListBox workoutsList;
         private Button editWorkout;
+        private Button deleteWorkout;
     }
 }
