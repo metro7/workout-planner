@@ -17,3 +17,5 @@ D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\bin\Debug\net6.0-windows
 D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.genruntimeconfig.cache
 D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\ref\WorkoutPlanner.dll
 D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.ViewWorkouts.resources
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.CreateWorkout.resources
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.AddEditExercise.resources
