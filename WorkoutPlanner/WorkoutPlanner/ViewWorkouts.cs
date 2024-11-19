@@ -22,38 +22,6 @@ namespace WorkoutPlanner
             LoadWorkouts();
         }
 
-        /*private void ViewWorkouts_Load(object sender, EventArgs e)
-        {
-            string workoutFolderLocation = Application.StartupPath.ToString();
-            string workoutFolderPath = System.IO.Path.Combine(workoutFolderLocation, "workouts");
-
-            System.IO.Directory.CreateDirectory(workoutFolderPath);
-
-            string pathToWorkouts = Application.StartupPath.ToString() + @"\workouts\";
-            string[] workoutFiles = Directory.GetFiles(pathToWorkouts, "*.txt");
-
-            foreach (string file in workoutFiles)
-            {
-                var workoutData = File.ReadAllLines(file);
-                var workoutName = workoutData[0].Replace("Workout: ", "");
-                var workout = new Workout(workoutName);
-
-                for (int i = 1; i < workoutData.Length; i++)
-                {
-                    var line = workoutData[i];
-                    var parts = line.Split(new[] { " - ", " sets, " }, StringSplitOptions.None);
-                    if (parts.Length == 3)
-                    {
-                        workout.AddExercise(new Exercise(parts[0], int.Parse(parts[1]), parts[2]));
-                    }
-                }
-
-                workouts.Add(workout);
-                workoutsList.Items.Add(workoutName);
-            }
-        }*/
-
-
 
         private void LoadWorkouts()
         {
