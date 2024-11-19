@@ -76,10 +76,27 @@ namespace WorkoutPlanner
 
         private void createWorkout_Click(object sender, EventArgs e)
         {
-            CreateWorkout createWorkoutForm = new CreateWorkout();
-            createWorkoutForm.ShowDialog();
-            LoadWorkouts();
-            this.Close();
+            string workoutName = workoutNameBox.Text;
+            if (!string.IsNullOrEmpty(workoutName))
+            {
+                if (File.Exists(Path.Combine("workouts", workoutNameBox.Text + ".txt")))
+                {
+                    MessageBox.Show("A workout with this name already exists.");
+                    return;
+                }
+                this.Close();
+                CreateWorkout createWorkoutForm = new CreateWorkout(workoutName);
+                string workoutFilePath = Path.Combine("workouts", workoutName + ".txt");
+                var workoutFile = File.Create(workoutFilePath);
+                workoutFile.Close();
+                createWorkoutForm.ShowDialog();
+                LoadWorkouts();
+            }
+            else
+            {
+                MessageBox.Show("Enter a workout name.");
+                return;
+            }
         }
 
         private void editWorkout_Click(object sender, EventArgs e)
@@ -87,10 +104,10 @@ namespace WorkoutPlanner
             string selectedWorkout = workoutsList.SelectedItem.ToString();
             if (selectedWorkout != null)
             {
+                this.Close();
                 CreateWorkout editWorkoutForm = new CreateWorkout(selectedWorkout);
                 editWorkoutForm.ShowDialog();
                 LoadWorkouts();
-                this.Close();
             }
         }
 

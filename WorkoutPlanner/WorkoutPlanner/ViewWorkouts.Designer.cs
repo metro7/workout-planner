@@ -35,6 +35,8 @@
             workoutsList = new ListBox();
             editWorkout = new Button();
             deleteWorkout = new Button();
+            workoutNameBox = new TextBox();
+            label2 = new Label();
             SuspendLayout();
             // 
             // main_menu
@@ -70,7 +72,7 @@
             createWorkout.FlatStyle = FlatStyle.Flat;
             createWorkout.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             createWorkout.ForeColor = Color.White;
-            createWorkout.Location = new Point(347, 105);
+            createWorkout.Location = new Point(348, 550);
             createWorkout.Name = "createWorkout";
             createWorkout.Size = new Size(250, 59);
             createWorkout.TabIndex = 5;
@@ -84,7 +86,7 @@
             startSession.FlatStyle = FlatStyle.Flat;
             startSession.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             startSession.ForeColor = Color.White;
-            startSession.Location = new Point(473, 426);
+            startSession.Location = new Point(472, 326);
             startSession.Name = "startSession";
             startSession.Size = new Size(187, 59);
             startSession.TabIndex = 6;
@@ -96,7 +98,7 @@
             workoutsList.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             workoutsList.FormattingEnabled = true;
             workoutsList.ItemHeight = 15;
-            workoutsList.Location = new Point(235, 191);
+            workoutsList.Location = new Point(234, 91);
             workoutsList.Name = "workoutsList";
             workoutsList.Size = new Size(471, 229);
             workoutsList.TabIndex = 7;
@@ -107,7 +109,7 @@
             editWorkout.FlatStyle = FlatStyle.Flat;
             editWorkout.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             editWorkout.ForeColor = Color.White;
-            editWorkout.Location = new Point(281, 426);
+            editWorkout.Location = new Point(280, 326);
             editWorkout.Name = "editWorkout";
             editWorkout.Size = new Size(187, 59);
             editWorkout.TabIndex = 8;
@@ -121,7 +123,7 @@
             deleteWorkout.FlatStyle = FlatStyle.Flat;
             deleteWorkout.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             deleteWorkout.ForeColor = Color.White;
-            deleteWorkout.Location = new Point(382, 491);
+            deleteWorkout.Location = new Point(381, 391);
             deleteWorkout.Name = "deleteWorkout";
             deleteWorkout.Size = new Size(187, 59);
             deleteWorkout.TabIndex = 9;
@@ -129,12 +131,34 @@
             deleteWorkout.UseVisualStyleBackColor = true;
             deleteWorkout.Click += deleteWorkout_Click;
             // 
+            // workoutNameBox
+            // 
+            workoutNameBox.Anchor = AnchorStyles.Top;
+            workoutNameBox.Location = new Point(348, 521);
+            workoutNameBox.Name = "workoutNameBox";
+            workoutNameBox.Size = new Size(250, 23);
+            workoutNameBox.TabIndex = 10;
+            // 
+            // label2
+            // 
+            label2.Anchor = AnchorStyles.Top;
+            label2.AutoSize = true;
+            label2.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(348, 500);
+            label2.Name = "label2";
+            label2.Size = new Size(169, 18);
+            label2.TabIndex = 12;
+            label2.Text = "New Workout Name:";
+            // 
             // ViewWorkouts
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(953, 631);
+            Controls.Add(label2);
+            Controls.Add(workoutNameBox);
             Controls.Add(deleteWorkout);
             Controls.Add(editWorkout);
             Controls.Add(workoutsList);
@@ -157,5 +181,7 @@
         private ListBox workoutsList;
         private Button editWorkout;
         private Button deleteWorkout;
+        private TextBox workoutNameBox;
+        private Label label2;
     }
 }
