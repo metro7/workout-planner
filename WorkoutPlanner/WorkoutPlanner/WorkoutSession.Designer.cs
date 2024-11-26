@@ -4,92 +4,124 @@
     {
         private System.ComponentModel.IContainer components = null;
 
-        private ListBox exerciseListBox;
-        private DataGridView sessionDataGridView;
-        private Label lblRepRange;
-        private Button btnSaveSession;
-        private Button btnCancelSession;
+        private Label lblWorkoutName;
+        private ListBox lbExercises;
+        private DataGridView dgvSetData;
+        private Button btnSaveProgress;
+        private Button btnFinishSession;
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent()
         {
-            this.exerciseListBox = new System.Windows.Forms.ListBox();
-            this.sessionDataGridView = new System.Windows.Forms.DataGridView();
-            this.lblRepRange = new System.Windows.Forms.Label();
-            this.btnSaveSession = new System.Windows.Forms.Button();
-            this.btnCancelSession = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.sessionDataGridView)).BeginInit();
-            this.SuspendLayout();
+            lblWorkoutName = new Label();
+            lbExercises = new ListBox();
+            dgvSetData = new DataGridView();
+            btnSaveProgress = new Button();
+            btnFinishSession = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvSetData).BeginInit();
+            SuspendLayout();
             // 
-            // exerciseListBox
+            // lblWorkoutName
             // 
-            this.exerciseListBox.FormattingEnabled = true;
-            this.exerciseListBox.Location = new System.Drawing.Point(12, 12);
-            this.exerciseListBox.Name = "exerciseListBox";
-            this.exerciseListBox.Size = new System.Drawing.Size(200, 290);
-            this.exerciseListBox.TabIndex = 0;
-            this.exerciseListBox.SelectedIndexChanged += new System.EventHandler(this.exerciseListBox_SelectedIndexChanged);
+            lblWorkoutName.AutoSize = true;
+            lblWorkoutName.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lblWorkoutName.ForeColor = Color.White;
+            lblWorkoutName.Location = new Point(20, 10);
+            lblWorkoutName.Name = "lblWorkoutName";
+            lblWorkoutName.Size = new Size(205, 29);
+            lblWorkoutName.TabIndex = 0;
+            lblWorkoutName.Text = "Workout: [Name]";
             // 
-            // sessionDataGridView
+            // lbExercises
             // 
-            this.sessionDataGridView.AllowUserToAddRows = false;
-            this.sessionDataGridView.AllowUserToDeleteRows = false;
-            this.sessionDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sessionDataGridView.Location = new System.Drawing.Point(230, 50);
-            this.sessionDataGridView.Name = "sessionDataGridView";
-            this.sessionDataGridView.Size = new System.Drawing.Size(400, 250);
-            this.sessionDataGridView.TabIndex = 1;
+            lbExercises.FormattingEnabled = true;
+            lbExercises.ItemHeight = 15;
+            lbExercises.Location = new Point(20, 40);
+            lbExercises.Name = "lbExercises";
+            lbExercises.Size = new Size(407, 199);
+            lbExercises.TabIndex = 1;
             // 
-            // lblRepRange
+            // dgvSetData
             // 
-            this.lblRepRange.AutoSize = true;
-            this.lblRepRange.Location = new System.Drawing.Point(230, 20);
-            this.lblRepRange.Name = "lblRepRange";
-            this.lblRepRange.Size = new System.Drawing.Size(63, 13);
-            this.lblRepRange.TabIndex = 2;
-            this.lblRepRange.Text = "Rep Range:";
+            dgvSetData.AllowUserToAddRows = false;
+            dgvSetData.AllowUserToDeleteRows = false;
+            dgvSetData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvSetData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSetData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            
+            dgvSetData.Location = new Point(20, 260);
+            dgvSetData.Name = "dgvSetData";
+            dgvSetData.RowHeadersVisible = false;
+            dgvSetData.RowTemplate.Height = 25;
+            dgvSetData.Size = new Size(607, 287);
+            dgvSetData.TabIndex = 2;
+            DataGridViewTextBoxColumn setColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Set #",
+                Name = "SetNumber",
+                ReadOnly = true,
+                Width = 50
+            };
+            dgvSetData.Columns.Add(setColumn);
+            DataGridViewTextBoxColumn repsColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Reps",
+                Name = "Reps",
+                Width = 100
+            };
+            dgvSetData.Columns.Add(repsColumn);
+            DataGridViewTextBoxColumn weightColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Weight",
+                Name = "Weight",
+                Width = 100
+            };
+            dgvSetData.Columns.Add(weightColumn);
+
             // 
-            // btnSaveSession
+            // btnSaveProgress
             // 
-            this.btnSaveSession.Location = new System.Drawing.Point(230, 320);
-            this.btnSaveSession.Name = "btnSaveSession";
-            this.btnSaveSession.Size = new System.Drawing.Size(200, 30);
-            this.btnSaveSession.TabIndex = 3;
-            this.btnSaveSession.Text = "Save Session";
-            this.btnSaveSession.UseVisualStyleBackColor = true;
-            this.btnSaveSession.Click += new System.EventHandler(this.btnSaveSession_Click);
+            btnSaveProgress.Anchor = AnchorStyles.None;
+            btnSaveProgress.FlatStyle = FlatStyle.Popup;
+            btnSaveProgress.Location = new Point(2, 604);
+            btnSaveProgress.Name = "btnSaveProgress";
+            btnSaveProgress.Size = new Size(12, 10);
+            btnSaveProgress.TabIndex = 3;
+            btnSaveProgress.UseVisualStyleBackColor = false;
             // 
-            // btnCancelSession
+            // btnFinishSession
             // 
-            this.btnCancelSession.Location = new System.Drawing.Point(430, 320);
-            this.btnCancelSession.Name = "btnCancelSession";
-            this.btnCancelSession.Size = new System.Drawing.Size(200, 30);
-            this.btnCancelSession.TabIndex = 4;
-            this.btnCancelSession.Text = "Cancel";
-            this.btnCancelSession.UseVisualStyleBackColor = true;
-            this.btnCancelSession.Click += new System.EventHandler(this.btnCancelSession_Click);
+            btnFinishSession.Anchor = AnchorStyles.Bottom;
+            btnFinishSession.FlatStyle = FlatStyle.Flat;
+            btnFinishSession.Font = new Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnFinishSession.ForeColor = Color.White;
+            btnFinishSession.Location = new Point(253, 567);
+            btnFinishSession.Name = "btnFinishSession";
+            btnFinishSession.Size = new Size(150, 38);
+            btnFinishSession.TabIndex = 4;
+            btnFinishSession.Text = "Finish Workout";
+            btnFinishSession.UseVisualStyleBackColor = false;
             // 
             // WorkoutSession
             // 
-            this.ClientSize = new System.Drawing.Size(644, 361);
-            this.Controls.Add(this.btnCancelSession);
-            this.Controls.Add(this.btnSaveSession);
-            this.Controls.Add(this.lblRepRange);
-            this.Controls.Add(this.sessionDataGridView);
-            this.Controls.Add(this.exerciseListBox);
-            this.Name = "WorkoutSession";
-            this.Text = "Workout Session";
-            ((System.ComponentModel.ISupportInitialize)(this.sessionDataGridView)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Black;
+            ClientSize = new Size(651, 617);
+            Controls.Add(btnFinishSession);
+            Controls.Add(btnSaveProgress);
+            Controls.Add(dgvSetData);
+            Controls.Add(lbExercises);
+            Controls.Add(lblWorkoutName);
+            Name = "WorkoutSession";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Workout Session";
+            ((System.ComponentModel.ISupportInitialize)dgvSetData).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }

@@ -12,96 +12,132 @@ namespace WorkoutPlanner
 {
     public partial class WorkoutSession : Form
     {
-        private string workoutFile;
+        private string workoutName;
+        private string workoutFilePath;
+        private string sessionFilePath;
 
         public WorkoutSession(string workoutName)
         {
             InitializeComponent();
-            this.workoutFile = $"Workouts/{workoutName}.txt";
+            InitializeSetDataGridView();
+            this.workoutName = workoutName;
+
+            workoutFilePath = Path.Combine("Workouts", workoutName + ".txt");
+            sessionFilePath = Path.Combine("WorkoutSessions", workoutName + $"_Session_{DateTime.Now:yyyyMMdd_HHmmss}.txt");
+
+            lblWorkoutName.Text = $"Workout: {workoutName}";
             LoadExercises();
-            SetupDataGridView();
+
+            lbExercises.SelectedIndexChanged += (s, e) => LoadExerciseSets();
+            dgvSetData.CellValueChanged += (s, e) => SaveSetData(e.RowIndex, e.ColumnIndex);
+            btnFinishSession.Click += (s, e) => FinishSession();
         }
 
-        // Load exercises into the ListBox
         private void LoadExercises()
         {
-            if (File.Exists(workoutFile))
+            if (!File.Exists(workoutFilePath))
             {
-                var exercises = File.ReadAllLines(workoutFile);
-                foreach (var exercise in exercises)
-                {
-                    var exerciseName = exercise.Split('|')[0];
-                    exerciseListBox.Items.Add(exerciseName);
-                }
-            }
-        }
-
-        // Setup DataGridView for entering sets, reps, and weight
-        private void SetupDataGridView()
-        {
-            sessionDataGridView.Columns.Add("Set", "Set");
-            sessionDataGridView.Columns.Add("Reps", "Reps");
-            sessionDataGridView.Columns.Add("Weight", "Weight");
-        }
-
-        // Populate DataGridView and display rep range when an exercise is selected
-        private void exerciseListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (exerciseListBox.SelectedItem == null)
-                return;
-
-            sessionDataGridView.Rows.Clear();
-            string selectedExercise = exerciseListBox.SelectedItem.ToString();
-            var exerciseDetails = File.ReadAllLines(workoutFile)
-                                      .FirstOrDefault(line => line.StartsWith(selectedExercise));
-            if (exerciseDetails != null)
-            {
-                var parts = exerciseDetails.Split('|');
-                string repRange = parts[2] + " - " + parts[3]; // Format: Min-Max
-                lblRepRange.Text = $"Rep Range: {repRange}";
-                int sets = Int32.Parse(parts[1]);
-                for (int i = 1; i <= sets; i++) 
-                {
-                    sessionDataGridView.Rows.Add(i.ToString(), "", "");
-                }
-            }
-        }
-
-        // Save session data to a log file
-        private void btnSaveSession_Click(object sender, EventArgs e)
-        {
-            if (exerciseListBox.SelectedItem == null)
-            {
-                MessageBox.Show("Please select an exercise before saving.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Workout file '{workoutFilePath}' not found.");
+                Close();
                 return;
             }
 
-            string selectedExercise = exerciseListBox.SelectedItem.ToString();
-            string sessionFile = $"Sessions/{Path.GetFileNameWithoutExtension(workoutFile)}_Session.txt";
+            lbExercises.Items.Clear();
 
-            if (!Directory.Exists("Sessions"))
-                Directory.CreateDirectory("Sessions");
-
-            using (StreamWriter writer = new StreamWriter(sessionFile, true))
+            // loads exercises from workout file
+            foreach (var line in File.ReadAllLines(workoutFilePath))
             {
-                writer.WriteLine($"Exercise: {selectedExercise}");
-                foreach (DataGridViewRow row in sessionDataGridView.Rows)
+                var exerciseName = line.Split('|')[0];
+                lbExercises.Items.Add(exerciseName);
+            }
+        }
+
+        private void LoadExerciseSets()
+        {
+            if (lbExercises.SelectedItem == null) return;
+
+            string selectedExercise = lbExercises.SelectedItem.ToString();
+            dgvSetData.Rows.Clear();
+
+            var exerciseDetails = File.ReadAllLines(workoutFilePath)
+                .FirstOrDefault(line => line.StartsWith(selectedExercise));
+
+            if (exerciseDetails == null)
+            {
+                MessageBox.Show($"Details for exercise '{selectedExercise}' not found in workout file.");
+                return;
+            }
+
+            // Format data
+            var parts = exerciseDetails.Split('|');
+            if (parts.Length < 4) return;
+
+            int sets = int.Parse(parts[1]);
+            int minReps = int.Parse(parts[2]);
+            int maxReps = int.Parse(parts[3]);
+
+            for (int i = 1; i <= sets; i++)
+            {
+                dgvSetData.Rows.Add(i, $"{minReps}-{maxReps}", "");
+            }
+
+            dgvSetData.AllowUserToAddRows = false;
+
+            // Load session data if exists
+            if (File.Exists(sessionFilePath))
+            {
+                var sessionData = File.ReadAllLines(sessionFilePath)
+                    .Where(line => line.StartsWith(selectedExercise))
+                    .ToList();
+
+                foreach (var line in sessionData)
                 {
-                    if (row.Cells["Reps"].Value != null && row.Cells["Weight"].Value != null)
+                    var sessionParts = line.Split('|');
+                    if (sessionParts.Length == 4)
                     {
-                        writer.WriteLine($"Set {row.Cells["Set"].Value}: {row.Cells["Reps"].Value} reps, {row.Cells["Weight"].Value} kg");
+                        int setNumber = int.Parse(sessionParts[1]);
+                        if (setNumber <= dgvSetData.Rows.Count)
+                        {
+                            dgvSetData.Rows[setNumber - 1].Cells[1].Value = sessionParts[2];
+                            dgvSetData.Rows[setNumber - 1].Cells[2].Value = sessionParts[3];
+                        }
                     }
                 }
-                writer.WriteLine();
             }
-
-            MessageBox.Show("Session saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // Cancel session
-        private void btnCancelSession_Click(object sender, EventArgs e)
+        private void SaveSetData(int rowIndex, int columnIndex)
         {
-            this.Close();
+            if (rowIndex < 0 || lbExercises.SelectedItem == null) return;
+
+            string selectedExercise = lbExercises.SelectedItem.ToString();
+            var row = dgvSetData.Rows[rowIndex];
+            if (row.Cells[0].Value == null || row.Cells[1].Value == null || row.Cells[2].Value == null) return;
+
+            int setNumber = int.Parse(row.Cells[0].Value.ToString());
+            string reps = row.Cells[1].Value.ToString();
+            string weight = row.Cells[2].Value.ToString();
+
+            // Remove existing data for this set
+            var allLines = File.Exists(sessionFilePath) ? File.ReadAllLines(sessionFilePath).ToList() : new List<string>();
+            allLines.RemoveAll(line => line.StartsWith($"{selectedExercise}|{setNumber}|"));
+
+            // Add updated data
+            allLines.Add($"{selectedExercise}|{setNumber}|{reps}|{weight}");
+            File.WriteAllLines(sessionFilePath, allLines);
+        }
+
+        private void InitializeSetDataGridView()
+        {
+            dgvSetData.AllowUserToAddRows = false;
+            dgvSetData.RowHeadersVisible = false;
+            dgvSetData.Columns["SetNumber"].ReadOnly = true;
+        }
+
+        private void FinishSession()
+        {
+            MessageBox.Show("Workout session finished!");
+            Close();
         }
     }
 }
