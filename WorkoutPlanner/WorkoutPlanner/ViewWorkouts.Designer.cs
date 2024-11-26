@@ -92,6 +92,7 @@
             startSession.TabIndex = 6;
             startSession.Text = "Start Workout Session";
             startSession.UseVisualStyleBackColor = true;
+            startSession.Click += startSession_Click;
             // 
             // workoutsList
             // 

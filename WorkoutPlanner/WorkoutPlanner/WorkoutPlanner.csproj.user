@@ -16,5 +16,8 @@
     <Compile Update="ViewWorkouts.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="WorkoutSession.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -19,3 +19,4 @@ D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows
 D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.ViewWorkouts.resources
 D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.CreateWorkout.resources
 D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.AddEditExercise.resources
+D:\GitHub\workout-planner\WorkoutPlanner\WorkoutPlanner\obj\Debug\net6.0-windows\WorkoutPlanner.WorkoutSession.resources

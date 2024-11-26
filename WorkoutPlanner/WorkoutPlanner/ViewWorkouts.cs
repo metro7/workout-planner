@@ -99,5 +99,20 @@ namespace WorkoutPlanner
 
             }
         }
+
+        private void startSession_Click(object sender, EventArgs e)
+        {
+            if (workoutsList.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a workout to start a session.", "No Workout Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string selectedWorkout = workoutsList.SelectedItem.ToString();
+
+            // Open the WorkoutSession form
+            WorkoutSession sessionForm = new WorkoutSession(selectedWorkout);
+            sessionForm.ShowDialog();
+        }
     }
 }
