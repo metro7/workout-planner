@@ -1,3 +1,5 @@
 Calf Raises|3|15|20
 Seated Leg Extensions|3|12|15
 Seated Leg Curls|3|12|15
+Back Squat|2|6|10
+Romanian Deadlift|3|8|12

@@ -1,9 +1,0 @@
-Calf Raises|1|12|4
-Calf Raises|2|12|4
-Calf Raises|3|12|4
-Seated Leg Extensions|1|15|15
-Seated Leg Extensions|2|15|15
-Seated Leg Extensions|3|15|15
-Seated Leg Curls|1|15|15
-Seated Leg Curls|2|15|15
-Seated Leg Curls|3|15|15

@@ -7,6 +7,9 @@
     <Compile Update="CreateWorkout.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SessionDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ViewExercises.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -14,6 +17,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ViewWorkouts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="WorkoutHistory.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="WorkoutSession.cs">

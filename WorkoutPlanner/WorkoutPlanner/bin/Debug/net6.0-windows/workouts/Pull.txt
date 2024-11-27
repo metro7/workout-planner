@@ -1,1 +1,4 @@
-Incline Dumbbell Bench Press|1|2|4
+Single-Arm Cable Pulldown|3|12|15
+Barbell Row|3|8|12
+Bayesian Cable Curls|3|12|15
+Lying Dumbbell Curls|3|12|15
